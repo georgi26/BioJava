@@ -1,7 +1,6 @@
 package com.biolabi.files;
 
 import java.io.*;
-import java.nio.ByteBuffer;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -53,7 +52,7 @@ public class ChrCache {
         return result;
     }
 
-    public byte [] writeLing(long input){
+    public byte [] writeLong(long input){
         byte[] result = new byte[Long.BYTES];
         for (int i = Long.BYTES - 1; i >= 0; i--) {
             result[i] = (byte)(input & 0xFF);
@@ -78,5 +77,9 @@ public class ChrCache {
 
     public Map<Long, Long> getCache() {
         return cache;
+    }
+
+    public File getFile() {
+        return file;
     }
 }

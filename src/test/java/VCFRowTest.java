@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class VCFRowTest {
 
@@ -35,17 +36,19 @@ public class VCFRowTest {
 
     @Test
     public void testFileParse() throws IOException, URISyntaxException {
-        File file = new File(getClass().getClassLoader().getResource("test.vcf").toURI());
+        File file = new File("./test_data/test.vcf");
         VCFFile vcfFile = new VCFFile(file);
         List<VCFRow> rows = new ArrayList<VCFRow>(30);
         vcfFile.forEachRow( row -> rows.add(row));
         assertEquals(30,rows.size());
+        VCFRow row = vcfFile.findARow("1",10001);
+        assertNotNull(row);
     }
 
     @Test
     public void testWriteLong(){
         ChrCache cache = new ChrCache("1",new File(""));
-        byte[] result = cache.writeLing(10001);
+        byte[] result = cache.writeLong(10001);
         assertEquals(17,result[0]);
     }
 

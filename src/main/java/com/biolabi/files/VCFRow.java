@@ -30,7 +30,11 @@ public class VCFRow {
     }
 
     private String parseChrom(String input) throws IOException {
-        return AssemblyReport.getInstance().getChromosome(input);
+        String result = AssemblyReport.getInstance().getChromosome(input);
+        if(result == null){
+            result = input;
+        }
+        return result;
     }
 
     public String getChrom() {
@@ -41,4 +45,7 @@ public class VCFRow {
         return position;
     }
 
+    public String getRaw() {
+        return raw;
+    }
 }
